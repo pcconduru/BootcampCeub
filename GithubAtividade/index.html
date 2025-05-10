@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Conduru - Site Moderno</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a5c36;
+            --secondary-color: #4caf50;
+            --accent-color: #ff9800;
+            --text-color: #333;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo img {
+            height: 80px;
+            margin-right: 15px;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            display: block;
+            text-decoration: none;
+            color: var(--text-color);
+            padding: 1rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .dropdown {
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 1;
+        }
+
+        .nav-links li:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown a {
+            padding: 12px 16px;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            background: url('/api/placeholder/1200/600') center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 0 2rem;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #e68a00;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+            font-size: 2rem;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 10px auto 0;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-content h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .features {
+            background-color: white;
+            padding: 4rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            margin-bottom: 1rem;
+        }
+
+        .testimonials {
+            margin-bottom: 3rem;
+        }
+
+        .testimonial {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 4rem;
+            line-height: 1;
+            color: var(--primary-color);
+            opacity: 0.2;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .contact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-info {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 1rem;
+        }
+
+        .contact-text h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form {  
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-form h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-col h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-right: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalIn 0.3s ease-out;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .close-modal {
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #777;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 60px);
+                background-color: white;
+                flex-direction: column;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+                z-index: 100;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .dropdown {
+                position: static;
+                box-shadow: none;
+                width: 100%;
+                display: none;
+                padding-left: 2rem;
+            }
+
+            .nav-links .has-dropdown:hover .dropdown {
+                display: none;
+            }
+
+            .dropdown.active {
+                display: block;
+            }
+
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="/api/placeholder/80/80" alt="PC Conduru Logo">
+            <h1>PC Conduru</h1>
+        </div>
+        <p>Parque Científico: Inovação e Tecnologia para o Desenvolvimento Regional</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio" class="active">Início</a></li>
+                <li class="has-dropdown">
+                    <a href="#sobre">Sobre <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown">
+                        <a href="#missao">Nossa Missão</a>
+                        <a href="#historia">História</a>
+                        <a href="#equipe">Equipe</a>
+                    </div>
+                </li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#noticias">Notícias</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="inicio">
+            <div class="hero-content">
+                <h2>Bem-vindo ao PC Conduru</h2>
+                <p>Promovendo inovação, pesquisa e desenvolvimento tecnológico para a região sul da Bahia.</p>
+                <a href="#contato" class="btn">Entre em Contato</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="sobre">
+            <h2 class="section-title">Sobre Nós</h2>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/300" alt="Missão">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="missao">Nossa Missão</h3>
+                        <p>O Parque Científico Conduru tem como missão promover o desenvolvimento científico e tecnológico da região, através da integração entre empresas de base tecnológica, instituições de ensino e pesquisa e órgãos governamentais.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/300" alt="História">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="historia">Nossa História</h3>
+                        <p>Fundado em 2018, o PC Conduru surgiu da necessidade de criar um ambiente propício para o desenvolvimento de inovações tecnológicas e científicas na região sul da Bahia, especialmente no setor de tecnologia da informação.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/300" alt="Equipe">
+                    </div>
+                    <div class="card-content">
+                        <h3 id="equipe">Nossa Equipe</h3>
+                        <p>Contamos com uma equipe multidisciplinar de profissionais altamente qualificados, incluindo pesquisadores, professores, empreendedores e especialistas em diversas áreas do conhecimento.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="servicos">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <div class="features">
+                <div class="features-grid">
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3>Pesquisa e Desenvolvimento</h3>
+                        <p>Desenvolvimento de pesquisas científicas e tecnológicas em parceria com instituições de ensino e empresas.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Incubação de Empresas</h3>
+                        <p>Apoio e suporte para startups e empresas de base tecnológica em processo de desenvolvimento.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Capacitação Profissional</h3>
+                        <p>Cursos, workshops e treinamentos para formação e qualificação profissional em áreas tecnológicas.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Parcerias Estratégicas</h3>
+                        <p>Desenvolvimento de parcerias com instituições públicas e privadas para fomento à inovação.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projetos">
+            <h2 class="section-title">Projetos em Destaque</h2>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/300" alt="Projeto 1">
+                    </div>
+                    <div class="card-content">
+                        <h3>Núcleo de Tecnologias Sustentáveis</h3>
+                        <p>Desenvolvimento de soluções tecnológicas voltadas para sustentabilidade e preservação ambiental na região sul da Bahia.</p>
+                        <a href="#" class="btn" style="margin-top: 1rem;">Saiba Mais</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/300" alt="Projeto 2">
+                    </div>
+                    <div class="card-content">
+                        <h3>Hub de Inovação Digital</h3>
+                        <p>Espaço colaborativo para desenvolvimento de soluções digitais inovadoras, com foco em problemas regionais.</p>
+                        <a href="#" class="btn" style="margin-top: 1rem;">Saiba Mais</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/300" alt="Projeto 3">
+                    </div>
+                    <div class="card-content">
+                        <h3>Rede de Bioeconomia</h3>
+                        <p>Iniciativa para desenvolvimento de produtos e serviços baseados na biodiversidade do sul da Bahia, com foco em sustentabilidade.</p>
+                        <a href="#" class="btn" style="margin-top: 1rem;">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section id="noticias">
+            <h2 class="section-title">Notícias Recentes</h2>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/300" alt="Notícia 1">
+                    </div>
+                    <div class="card-content">
+                        <h3>PC Conduru recebe investimento para ampliação</h3>
+                        <p>Em parceria com o governo estadual, o Parque Científico Conduru receberá investimentos para expansão de sua infraestrutura.</p>
+                        <p><small>10 de Maio, 2025</small></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/300" alt="Notícia 2">
+                    </div>
+                    <div class="card-content">
+                        <h3>Evento de inovação reúne startups da região</h3>
+                        <p>O PC Conduru sediou o primeiro encontro regional de startups, com participação de mais de 50 empresas de tecnologia.</p>
+                        <p><small>25 de Abril, 2025</small></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/300" alt="Notícia 3">
+                    </div>
+                    <div class="card-content">
+                        <h3>Abertas inscrições para programa de incubação</h3>
+                        <p>Estão abertas as inscrições para o programa de incubação de empresas de base tecnológica do PC Conduru.</p>
+                        <p><small>15 de Abril, 2025</small></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <h2 class="section-title">Depoimentos</h2>
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    <p>O PC Conduru foi fundamental para o crescimento da nossa startup. O ambiente colaborativo e o suporte técnico nos permitiram desenvolver soluções inovadoras para o mercado regional.</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="/api/placeholder/50/50" alt="Autor 1">
+                    <div class="author-info">
+                        <h4>Maria Silva</h4>
+                        <p>CEO, TechSul Soluções</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    <p>Como pesquisador, encontrei no PC Conduru o ambiente ideal para desenvolver projetos em parceria com o setor produtivo. A infraestrutura e a rede de contatos disponibilizados pelo parque são excelentes.</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="/api/placeholder/50/50" alt="Autor 2">
+                    <div class="author-info">
+                        <h4>Dr. João Santos</h4>
+                        <p>Professor, UFSB</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contato">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contact">
+                <div class="contact-info">
+                    <h3>Informações de Contato</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Endereço</h4>
+                            <p>Av. Ilhéus, 1000, Centro, Ilhéus - BA, 45650-000</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Telefone</h4>
+                            <p>(73) 3214-5678</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>E-mail</h4>
+                            <p>contato@pcconduru.com.br</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Horário de Funcionamento</h4>
+                            <p>Segunda a Sexta: 8h às 18h</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Envie uma Mensagem</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nome" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="E-mail" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="Telefone">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Mensagem" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>PC Conduru</h3>
+                <p>Parque Científico e Tecnológico dedicado ao desenvolvimento regional através da inovação e pesquisa aplicada.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Links Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#noticias">Notícias</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Serviços</h3>
+                <ul class="footer-links">
+                    <li><a href="#servicos">Pesquisa e Desenvolvimento</a></li>
+                    <li><a href="#servicos">Incubação de Empresas</a></li>
+                    <li><a href="#servicos">Capacitação Profissional</a></li>
+                    <li><a href="#servicos">Parcerias Estratégicas</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Newsletter</h3>
+                <p>Assine nossa newsletter para receber atualizações sobre eventos e oportunidades.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Seu e-mail" class="form-control" style="margin-bottom: 1rem;" required>
+                    <button type="submit" class="btn">Assinar</button>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 PC Conduru. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Título do Modal</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Conteúdo do modal será inserido aqui dinamicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Menu móvel
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Dropdown no menu móvel
+        document.querySelectorAll('.has-dropdown').forEach(item => {
+            item.addEventListener('click', event => {
+                if (window.innerWidth <= 768) {
+                    const dropdown = item.querySelector('.dropdown');
+                    if (dropdown.classList.contains('active')) {
+                        dropdown.classList.remove('active');
+                    } else {
+                        // Fecha outros dropdowns
+                        document.querySelectorAll('.dropdown').forEach(d => {
+                            d.classList.remove('active');
+                        });
+                        dropdown.classList.add('active');
+                    }
+                    event.preventDefault();
+                }
+            });
+        });
+
+        // Modal
+        const modal = document.getElementById('modal');
+        const closeModal = document.getElementById('closeModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+
+        // Abrir modal
+        function openModal(title, content) {
+            modalTitle.textContent = title;
+            modalBody.innerHTML = content;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Fechar modal
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Fechar modal ao clicar fora do conteúdo
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Links "Saiba Mais" abrem modal
+        document.querySelectorAll('.card .btn').forEach((btn, index) => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const titles = [
+                    "Núcleo de Tecnologias Sustentáveis",
+                    "Hub de Inovação Digital",
+                    "Rede de Bioeconomia"
+                ];
+                const contents = [
+                    `<p>O Núcleo de Tecnologias Sustentáveis (NTS) é uma iniciativa do PC Conduru voltada para o desenvolvimento de soluções tecnológicas que contribuam para a sustentabilidade ambiental na região sul da Bahia.</p>
+                    <p>Atuando em parceria com instituições de ensino, órgãos ambientais e empresas, o NTS desenvolve pesquisas e protótipos em áreas como:</p>
+                    <ul style="list-style-type: disc; padding-left: 20px; margin: 15px 0;">
+                        <li>Energia renovável com foco em biomassa e energia solar</li>
+                        <li>Sistemas de tratamento de água e resíduos</li>
+                        <li>Monitoramento ambiental com uso de IoT</li>
+                        <li>Tecnologias para agricultura sustentável</li>
+                    </ul>
+                    <p>O núcleo conta com laboratórios equipados e uma equipe multidisciplinar de pesquisadores nas áreas de engenharia, biologia, química e tecnologia da informação.</p>`,
+                    
+                    `<p>O Hub de Inovação Digital é um espaço colaborativo voltado para o desenvolvimento de soluções digitais que atendam às necessidades regionais, fomentando o ecossistema tecnológico local.</p>
+                    <p>O Hub oferece:</p>
+                    <ul style="list-style-type: disc; padding-left: 20px; margin: 15px 0;">
+                        <li>Espaço de coworking equipado com infraestrutura de última geração</li>
+                        <li>Mentoria especializada em desenvolvimento de software e negócios digitais</li>
+                        <li>Programas de aceleração para startups em estágio inicial</li>
+                        <li>Conexão com investidores e fundos de capital de risco</li>
+                    </ul>
+                    <p>Atualmente, o Hub abriga mais de 15 startups em diferentes estágios de desenvolvimento, atuando em setores como agritech, edtech, healthtech e soluções para o turismo regional.</p>`,
+                    
+                    `<p>A Rede de Bioeconomia é uma iniciativa que visa integrar pesquisa científica, conservação ambiental e desenvolvimento econômico, explorando de forma sustentável o potencial da biodiversidade do sul da Bahia.</p>
+                    <p>Esta rede colaborativa trabalha nos seguintes eixos:</p>
+                    <ul style="list-style-type: disc; padding-left: 20px; margin: 15px 0;">
+                        <li>Bioprospecção e desenvolvimento de produtos naturais</li>
+                        <li>Desenvolvimento de cosméticos e fitoterápicos a partir da flora regional</li>
+                        <li>Aprimoramento de cadeias produtivas sustentáveis de cacau, açaí e produtos florestais</li>
+                        <li>Sistemas agroflorestais e recuperação de áreas degradadas</li>
+                    </ul>
+                    <p>A Rede conta com parceiros como UFSB, UESC, Embrapa, cooperativas locais e empresas do setor de biotecnologia, promovendo a transferência de conhecimento entre academia e setor produtivo.</p>`
+                ];
+                
+                openModal(titles[index], contents[index]);
+            });
+        });
+
+        // Formulário de contato
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            openModal('Mensagem Enviada', '<p>Sua mensagem foi enviada com sucesso! Em breve entraremos em contato.</p>');
+            this.reset();
+        });
+
+        // Formulário de newsletter
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            openModal('Inscrição Confirmada', '<p>Obrigado por se inscrever em nossa newsletter!</p>');
+            this.reset();
+        });
+
+        // Efeito de scroll suave para links âncora
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animação de elementos ao scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.card, .feature, .testimonial');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Inicializar os elementos com opacity 0
+        document.querySelectorAll('.card, .feature, .testimonial').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        // Chamar animação no carregamento e no scroll
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+
+        // Menu ativo conforme scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
