@@ -9,10 +9,12 @@ Este repositório foi criado como parte da entrega intermediária do **Bootcamp 
 Este repositório segue rigorosamente a estrutura estabelecida no documento de requisitos da atividade e está organizado nas seguintes seções:
 
 ### 1. Projetos Acadêmicos
-Esta pasta contém trabalhos e projetos desenvolvidos durante o curso, incluindo:
-- Atividades avaliativas
-- Trabalhos em grupo
-- Projetos de disciplinas específicas
+
+Site feito com html com auxilo da tecnologia Claude 3.7 sonnet.
+
+Projetos Pessoais Aqui estão hospedados projetos desenvolvidos por interesse próprio, demonstrando habilidades adicionais e conhecimentos além do currículo acadêmico.
+
+Documentação Pasta dedicada à documentação técnica e guias relacionados aos projetos contidos neste repositório. Práticas de Versionamento Aplicadas Este repositório implementa as seguintes práticas de versionamento com Git:
 
 ### 2. Projetos Pessoais
 Aqui estão hospedados projetos desenvolvidos por interesse próprio, demonstrando habilidades adicionais e conhecimentos além do currículo acadêmico.
